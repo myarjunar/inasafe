@@ -684,6 +684,7 @@ def atlas_renderer(composition, coverage_layer, output_path, file_format):
     :return: Generated output path(s).
     :rtype: str, list
     """
+    LOGGER.info('Atlas driven template found')
     # set the composer map to be atlas driven
     composer_map = composition_item(composition, 'impact-map', QgsComposerMap)
     composer_map.setAtlasDriven(True)

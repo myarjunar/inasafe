@@ -1,6 +1,6 @@
 # coding=utf-8
 """Utilities module for helping definitions retrieval."""
-
+import logging
 from os import listdir
 from os.path import join, exists, splitext
 from qgis.core import QgsApplication
@@ -31,6 +31,9 @@ __copyright__ = "Copyright 2016, The InaSAFE Project"
 __license__ = "GPL version 3"
 __email__ = "info@inasafe.org"
 __revision__ = '$Format:%H$'
+
+
+LOGGER = logging.getLogger('InaSAFE')
 
 
 def purposes_for_layer(layer_geometry_key):
@@ -515,6 +518,7 @@ def update_template_component(
                     QgisComposerComponentsMetadata.OutputFormat.QPT):
                 continue
             if hazard['key'] in file_name and exposure['key'] in file_name:
+                LOGGER.info('Custom hazard-exposure template found')
                 # we do the import here to avoid circular import when starting
                 # up the plugin
                 from safe.definitions.reports.components import (
